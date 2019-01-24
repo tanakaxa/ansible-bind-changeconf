@@ -1,0 +1,11 @@
+$TTL	15
+@	IN	SOA	lab.example.com. root.example.com. (
+	20190124	;
+	15		;
+	15		;
+	15		;
+	15		;
+	)
+	IN NS node1.lab.example.com.
+node1	IN A  127.0.0.1
+new		IN A  127.0.0.2

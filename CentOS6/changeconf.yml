@@ -1,0 +1,28 @@
+- hosts: DNS
+  become: yes   # sudoで実行する
+  tasks:
+    - name: Put new config
+      copy:
+        src: conf/lab.example.com.zone      # Playbook実行ホストのローカルファイル
+        dest: /etc/named/                   # 実行対象ホストのディレクトリ
+        owner: root
+        group: root
+        mode: 0644
+        backup: yes                         # 現在のファイルをバックアップする
+
+    - name: Restart service
+      service:
+        name: named
+        state: restarted
+
+
+- hosts: localhost
+  vars:
+    dns_server: xx.xx.xx.xx                 # digを実行するDNSサーバのIPアドレス
+  tasks:
+    - name: Test Dig A record
+      debug: msg="A record for {{item}} {{ lookup('dig', '{{ item }}', '@{{ dns_server }}') }}"
+      loop:
+        - "www.google.co.jp"                # Forwardするレコード
+        - "node1.lab.example.com"           # 既存のレコード
+        - "new.lab.example.com"             # 新しく追加したレコード

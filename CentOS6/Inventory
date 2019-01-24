@@ -1,0 +1,5 @@
+[DNS]
+xx.xx.xx.xx  # DNSサーバのIPアドレス
+
+[localhost]
+127.0.0.1 ansible_connection=local
