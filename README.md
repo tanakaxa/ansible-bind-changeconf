@@ -3,4 +3,4 @@
 # メモ
 pip install dnspython
 
-対象ホストはSELINUXをdisabledにするか、lib-selinuxのインストールが必要
+対象ホストはSELINUXをdisabledにするか、libselinux-pythonのインストールが必要
